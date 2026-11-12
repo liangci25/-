@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忆梦 · 字卡库</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/cards.css">
+</head>
+<body>
+<div class="app cards-app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <a class="icon-btn dim" href="../index.html" aria-label="返回桌面">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="nav-title">字卡库</div>
+    <button class="icon-btn dim" id="btnMenu" aria-label="更多操作">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg>
+    </button>
+  </header>
+
+  <!-- ===== 工具区 ===== -->
+  <div class="cards-toolbar">
+    <div class="seg" id="segRoot">
+      <button class="seg-item" data-root="general" aria-selected="true">通用</button>
+      <button class="seg-item" data-root="exclusive" aria-selected="false">专属</button>
+    </div>
+
+    <div class="kind-tabs" id="kindTabs">
+      <button class="kind-tab" data-kind="text" aria-selected="true">字卡</button>
+      <button class="kind-tab" data-kind="sticker" aria-selected="false">表情包</button>
+      <button class="kind-tab" data-kind="emoji" aria-selected="false">emoji</button>
+    </div>
+
+    <div class="tools-row">
+      <div class="quick-row" id="quickRow">
+        <button class="quick-btn" data-act="import" aria-label="导入 JSON" title="导入">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 4.5v8"/><path d="M8.6 9.2L12 12.6l3.4-3.4"/><path d="M4.8 15v3.2a1.5 1.5 0 001.5 1.5h11.4a1.5 1.5 0 001.5-1.5V15"/></svg>
+        </button>
+        <button class="quick-btn" data-act="export" aria-label="导出 JSON" title="导出">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 12.6V4.5"/><path d="M8.6 8.1L12 4.7l3.4 3.4"/><path d="M4.8 15v3.2a1.5 1.5 0 001.5 1.5h11.4a1.5 1.5 0 001.5-1.5V15"/></svg>
+        </button>
+        <button class="quick-btn" data-act="group" aria-label="新建分组" title="新建分组">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M3.8 8.2a1 1 0 011-1h4.2l1.7 1.9h8.6a1 1 0 011 1v8.1a1 1 0 01-1 1H4.8a1 1 0 01-1-1V8.2z"/><path d="M12 11.8v4.4M9.8 14h4.4"/></svg>
+        </button>
+        <button class="quick-btn" data-act="batch" aria-label="批量管理" title="批量管理">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4.5 6.2h15M4.5 12h15M4.5 17.8h9"/><path d="M17.3 16.6l1.8 1.8 3-3.2"/></svg>
+        </button>
+      </div>
+
+      <div class="field search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <circle cx="10.5" cy="10.5" r="5.6"/><path d="M15 15l4 4"/>
+        </svg>
+        <input id="searchInput" type="search" placeholder="搜索字卡" autocomplete="off">
+      </div>
+
+      <div class="member-bar" id="memberBar"></div>
+    </div>
+  </div>
+
+  <!-- ===== 分组列表 ===== -->
+  <main class="group-list" id="groupList"></main>
+
+  <div class="empty hide" id="cardsEmpty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+      <rect x="4" y="6.5" width="16" height="11" rx="2"/>
+      <path d="M7 10.5h10M7 13.5h6"/>
+    </svg>
+    <p id="emptyText">还没有字卡</p>
+    <button class="btn btn-sm" id="btnEmptyAdd">添加字卡</button>
+  </div>
+
+  <!-- ===== 批量操作条 ===== -->
+  <div class="batch-bar hide" id="batchBar">
+    <span class="batch-count" id="batchCount">已选 0 条</span>
+    <button class="btn btn-sm" id="btnBatchMove">移动</button>
+    <button class="btn btn-sm btn-danger" id="btnBatchDelete">删除</button>
+    <button class="btn btn-sm btn-ghost" id="btnBatchExit">退出</button>
+  </div>
+
+  <!-- ===== 添加按钮 ===== -->
+  <button class="fab" id="btnAdd" aria-label="添加字卡">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+      <path d="M12 5v14M5 12h14"/>
+    </svg>
+  </button>
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/cards.js"></script>
+</body>
+</html>

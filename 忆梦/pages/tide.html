@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忆梦 · 潮汐</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/tide.css?v=135">
+</head>
+<body>
+<div class="app tide-app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <a class="icon-btn dim" href="../index.html" aria-label="返回桌面">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="nav-title">潮汐</div>
+    <button class="icon-btn dim tide-act" id="tideAction" aria-label="回到今天">
+      <svg class="ta-when" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+      <svg class="ta-when" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <rect x="4" y="6.2" width="16" height="13.4" rx="2.4"/>
+        <path d="M7.8 3.8v3.2"/>
+        <path d="M16.2 3.8v3.2"/>
+        <path d="M4 10.6h16"/>
+        <circle cx="12" cy="15.2" r="1.5" fill="currentColor" stroke="none"/>
+      </svg>
+      </svg>
+      <svg class="ta-set" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <path d="M4 8.4h9.2"/>
+        <circle cx="16.8" cy="8.4" r="2.4"/>
+        <path d="M20 15.6h-9.2"/>
+        <circle cx="7.2" cy="15.6" r="2.4"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ===== 分段 ===== -->
+  <nav class="tide-tabs" id="tideTabs">
+    <button class="tide-tab is-on" type="button" data-tab="plan">日程</button>
+    <button class="tide-tab" type="button" data-tab="period">经期</button>
+    <button class="tide-tab" type="button" data-tab="sleep">睡眠</button>
+  </nav>
+
+  <!-- ===== 内容 ===== -->
+  <main class="tide-main">
+
+    <div class="tide-bar">
+      <button class="tide-arrow" id="tidePrev" aria-label="上个月">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M14.5 6.5L9 12l5.5 5.5"/>
+        </svg>
+      </button>
+      <div class="tide-month" id="tideMonth">2026年11月</div>
+      <button class="tide-arrow" id="tideNext" aria-label="下个月">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+          <path d="M9.5 6.5L15 12l-5.5 5.5"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="tide-week">
+      <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+    </div>
+
+    <div class="tide-grid" id="tideGrid"></div>
+
+    <div class="tide-below" id="tideBelow"></div>
+
+  </main>
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/tide.js?v=135"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+/* ============================================================
+   忆梦 · index.css（桌面主屏 + 开场动画）
+   ============================================================ */
+
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ---------- 顶部品牌 ---------- */
+.home-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 26px 18px 0 26px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.brand-word {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  line-height: 1;
+  text-indent: 0.06em;
+}
+
+.brand-mark {
+  width: 44px;
+  height: 12px;
+  color: var(--text);
+}
+
+/* ---------- 桌面 ---------- */
+.desk {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  padding: 0 18px;
+  margin-top: clamp(26px, 9vh, 110px);
+}
+
+/* 横排：一行四个，八枚正好两行 */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: clamp(20px, 3.6vh, 32px);
+  column-gap: 6px;
+  width: 100%;
+  justify-items: center;
+}
+
+.icon-cell {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.home.is-ready .icon-cell {
+  animation: icon-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 100ms + 120ms);
+}
+
+@keyframes icon-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.app-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.icon-tile {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  color: var(--text);
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s ease, border-color 0.2s ease;
+}
+
+.icon-tile svg {
+  width: 32px;
+  height: 32px;
+}
+
+.app-icon:hover .icon-tile {
+  transform: translateY(-2px);
+  border-color: var(--line-strong);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.app-icon:active .icon-tile {
+  transform: scale(0.94);
+  box-shadow: none;
+}
+
+.icon-label {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+  text-indent: 0.1em;
+}
+
+/* ---------- 底部 ---------- */
+.home-foot {
+  display: flex;
+  justify-content: center;
+  padding: 0 0 34px;
+}
+
+.foot-line {
+  width: 40px;
+  height: 1px;
+  background: var(--line-strong);
+  opacity: 0.7;
+}
+
+/* ---------- 开场动画 ---------- */
+.opening {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  transition: opacity 0.42s ease;
+}
+
+.opening.is-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.opening.is-gone {
+  display: none;
+}
+
+.opening-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.opening-word {
+  font-size: 38px;
+  letter-spacing: 0.55em;
+  text-indent: 0.55em;
+  color: var(--text);
+  clip-path: inset(0 50% 0 50%);
+  animation: word-reveal 1.15s cubic-bezier(0.65, 0, 0.25, 1) 0.18s both;
+}
+
+@keyframes word-reveal {
+  0% { clip-path: inset(0 50% 0 50%); letter-spacing: 0.55em; opacity: 0.2; }
+  60% { opacity: 1; }
+  100% { clip-path: inset(0 0 0 0); letter-spacing: 0.22em; opacity: 1; }
+}
+
+.opening-rule {
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.7;
+  animation: rule-grow 0.9s cubic-bezier(0.65, 0, 0.25, 1) 0.9s both;
+}
+
+@keyframes rule-grow {
+  from { width: 0; opacity: 0; }
+  to { width: 96px; opacity: 0.75; }
+}
+
+.opening::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-weak) 0%, transparent 66%);
+  opacity: 0;
+  animation: halo 2s ease 0.5s both;
+  pointer-events: none;
+}
+
+@keyframes halo {
+  0% { opacity: 0; transform: scale(0.6); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1.15); }
+}
+
+/* 无动画偏好：直接跳过 */
+@media (prefers-reduced-motion: reduce) {
+  .opening { display: none; }
+}

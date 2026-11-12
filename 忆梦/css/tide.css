@@ -1,0 +1,607 @@
+/* ============================================================
+   忆梦 · tide.css（潮汐 · 日历）
+   ============================================================ */
+
+.tide-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tide-main {
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- 日程 / 经期 / 睡眠 ---------- */
+.tide-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 18px;
+}
+
+.tide-tab {
+  position: relative;
+  height: 34px;
+  border: 0;
+  background: none;
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.16s ease;
+}
+
+.tide-tab.is-on { color: var(--text); }
+
+.tide-tab.is-on::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: 16px;
+  height: 1px;
+  transform: translateX(-50%);
+  background: var(--text);
+  opacity: 0.45;
+}
+
+.tide-view { display: none; }
+.tide-view.is-on { display: flex; flex: 1; flex-direction: column; }
+
+/* 导航右上：日程下是「回到今天」，经期 / 睡眠下换成设置 */
+.tide-act .ta-set { display: none; }
+.tide-act.is-set .ta-when { display: none; }
+.tide-act.is-set .ta-set { display: block; }
+
+/* ---------- 经期 / 睡眠 的设置面板 ---------- */
+.tide-set { padding: 2px 2px 0; }
+
+.tide-set-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tide-set-row:last-child { border-bottom: 0; }
+
+.tide-set-name {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.tide-set-val {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tide-set-num {
+  width: 54px;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: right;
+  font-size: 15px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  -webkit-appearance: none;
+}
+
+.tide-set-num::-webkit-inner-spin-button,
+.tide-set-num::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+
+.tide-set-unit {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* ---------- 日历下方：日程的计划 / 经期的往期 ---------- */
+.tide-below {
+  padding: 12px 18px 26px;
+}
+
+.tide-below-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 0 6px;
+}
+
+.tide-below-title {
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+}
+
+.tide-plan {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tide-plan:last-child { border-bottom: 0; }
+
+.tide-plan-dot {
+  flex: 0 0 4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--line-strong);
+}
+
+.tide-plan-text {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.tide-plan-del {
+  border: 0;
+  padding: 2px 0 2px 8px;
+  background: none;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* ---------- 11.4.5 添加计划面板 ---------- */
+.tide-add-day {
+  margin: -2px 0 8px;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.tide-add {
+  display: flex;
+  flex-direction: column;
+}
+
+.tide-add-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tide-add-name {
+  flex: 0 0 auto;
+  font-size: 13px;
+  color: var(--text-2);
+}
+
+.tide-add-text {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.tide-add-date {
+  background: none;
+  border: 0;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  text-align: right;
+  padding: 0;
+}
+
+.tide-add-md {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tide-add-num {
+  width: 34px;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.tide-add-unit {
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.tide-tags {
+  display: flex;
+  gap: 8px;
+}
+
+.tide-tag-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 5px 12px;
+  background: none;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.tide-tag-btn.is-on {
+  border-color: var(--line-strong);
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+/* ---------- 11.4.6 计划行里的标签与「每年」 ---------- */
+.tide-plan-every {
+  flex: 0 0 auto;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.tide-plan-tag {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-size: 11px;
+  color: var(--text);
+}
+
+.tide-plan-tag svg,
+.tide-tag-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tide-past {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  text-align: left;
+}
+
+.tide-past:last-child { border-bottom: 0; }
+
+.tide-past-when {
+  font-size: 13px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.tide-past-days {
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.tide-below-empty {
+  padding: 14px 0 2px;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+/* 有计划的日子，数字下点一个小点 */
+.tide-cell.has-plan::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+}
+
+/* 带标签的那一天：日期照常居中，标签图标缩在右上角当小角标，不再画小点 */
+.tide-cell.has-mark::after { content: none; }
+
+.tide-num { line-height: 1.15; }
+
+.tide-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.tide-mark svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.tide-cell.is-pick .tide-mark { color: var(--text); }
+
+.tide-cell.has-plan.is-pick::after { background: var(--text); }
+
+/* 三个分段共用同一份日历，切换只换标记口径 */
+
+/* ---------- 月份条 ---------- */
+.tide-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 0 0 4px;
+}
+
+.tide-arrow {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--text-2);
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.18s ease, background 0.18s ease;
+}
+
+.tide-arrow svg { width: 18px; height: 18px; }
+.tide-arrow:active { background: var(--panel-2); color: var(--text); }
+
+.tide-month {
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  text-indent: 0.1em;
+  color: var(--text);
+}
+
+/* ---------- 星期行 ---------- */
+.tide-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0 0 2px;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  text-align: center;
+}
+
+/* ---------- 日格 ---------- */
+.tide-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+/* 睡眠三档：规律早睡 / 睡眠不足 / 熬夜 */
+.tide-sleep-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-2);
+}
+
+.tide-sleep-dot.is-good { background: #7E9673; }
+
+.tide-sleep-dot.is-short { background: #C0873C; }
+
+.tide-sleep-dot.is-late { background: #B4483A; }
+
+.tide-cell.has-sleep {
+  flex-direction: column;
+  gap: 1px;
+  padding-top: 1px;
+}
+
+.tide-cell.is-outside.has-sleep { opacity: 0.4; }
+
+.tide-sleep {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+}
+
+.tide-sleep-state {
+  flex: 0 0 auto;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.tide-sleep-state.is-good { color: #6C8462; background: rgba(126, 150, 115, 0.14); }
+
+.tide-sleep-state.is-short { color: #A06F2E; background: rgba(192, 135, 60, 0.14); }
+
+.tide-sleep-state.is-late { color: #A33F32; background: rgba(180, 72, 58, 0.13); }
+
+.tide-sleep-time {
+  flex: 1;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 自动记下的那一笔：时间后面一枚「自动」小字 */
+.tide-sleep-auto {
+  font-style: normal;
+  margin-left: 6px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  opacity: 0.75;
+}
+
+.sl-auto {
+  margin-left: 8px;
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.tide-sleep-dur {
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 记一笔面板里自动算出来的时长与档位 */
+.sl-calc {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+
+.sl-calc-label {
+  font-size: 12px;
+  color: var(--text-2);
+  letter-spacing: 0.06em;
+}
+
+.sl-calc-dur {
+  font-size: 13px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.tide-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding-left: 2px;
+}
+
+.tide-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+}
+
+.tide-cell {
+  position: relative;
+  height: clamp(25px, 6.4vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.tide-cell.is-outside { color: var(--line-strong); }
+
+.tide-cell.is-blank { pointer-events: none; }
+
+.tide-cell.is-weekend { opacity: 0.82; }
+
+/* 经期：浅底铺满整格，起讫两端再深一档；外月日期同样淡出 */
+.tide-cell.is-period {
+  background: color-mix(in srgb, var(--text) 12%, transparent);
+  border-radius: 9px;
+}
+
+.tide-cell.is-period.is-outside { opacity: 0.45; }
+
+.tide-cell.is-period.is-start {
+  background: color-mix(in srgb, var(--text) 22%, transparent);
+}
+
+/* 按周期长度推算的下一段：只描一圈细线，不填底 */
+.tide-cell.is-expect {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 24%, transparent);
+  border-radius: 9px;
+}
+
+/* 经期点了第一下、还没点讫日：起日先深一档并留一圈细线 */
+.tide-cell.is-pending {
+  background: color-mix(in srgb, var(--text) 20%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--text) 55%, transparent);
+}
+
+.tide-cell:active { background: var(--panel-2); }
+
+/* 今天：一圈细线 */
+.tide-cell.is-today::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 1px solid var(--text);
+  border-radius: 7px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* 选中：一圈细圆环，底色透明 */
+.tide-cell.is-pick {
+  background: none;
+  color: var(--text);
+}
+
+.tide-cell.is-pick::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--text);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.tide-cell.is-pick.is-today::after { border-color: var(--text); opacity: 0.28; }

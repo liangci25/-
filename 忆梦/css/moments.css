@@ -1,0 +1,734 @@
+/* ============================================================
+   忆梦 · moments.css（朋友圈）
+   ============================================================ */
+
+/* ---------- 15.2 列表 ---------- */
+.moments-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px 14px;
+}
+
+.moments-main.is-empty {
+  align-items: center;
+  justify-content: center;
+  padding: 0 32px 64px;
+  text-align: center;
+}
+
+.moment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.moments-main.is-empty .moment-list { display: none; }
+
+.moment-card {
+  padding: 13px 13px 11px;
+  border-radius: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.mc-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.mc-avatar .avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  font-size: 14px;
+}
+
+.mc-names {
+  flex: 1;
+  min-width: 0;
+}
+
+.mc-more {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  margin: -6px -6px -6px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--text-2);
+  transition: background 0.16s ease;
+}
+
+.mc-more:active { background: var(--panel-2); }
+
+.mc-more svg { width: 18px; height: 18px; }
+
+.mc-likes {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-top: 12px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.mc-heart {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  color: var(--text);
+  opacity: 0.5;
+}
+
+.mc-heart svg { width: 14px; height: 14px; display: block; }
+
+.mc-like-names { min-width: 0; }
+
+.mc-cmts {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.mc-cmt {
+  margin: 0 -8px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text);
+  transition: background 0.16s ease;
+}
+
+.mc-cmt:active { background: var(--panel-2); }
+
+.mc-cmt.is-reply { padding-left: 18px; }
+
+.mc-cmt-name {
+  font-weight: 500;
+}
+
+.mc-cmt-to {
+  margin-left: 6px;
+  color: var(--text-2);
+  opacity: 0.85;
+}
+
+.mc-cmt-colon {
+  color: var(--text-2);
+}
+
+.mc-cmt-text { color: var(--text); }
+
+.mc-acts {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.mc-act {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12.5px;
+  color: var(--text-2);
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.mc-act:active { background: var(--panel-2); }
+
+.mc-act.is-on { color: var(--text); }
+
+.mc-act svg { width: 16px; height: 16px; display: block; }
+
+.mc-name {
+  display: block;
+  font-size: 13.5px;
+  letter-spacing: 0.03em;
+  color: var(--text);
+}
+
+.mc-time {
+  display: block;
+  margin-top: 2px;
+  font-size: 10.5px;
+  color: var(--text-2);
+}
+
+.mc-text {
+  margin: 10px 0 0;
+  font-size: 13.5px;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.mc-at {
+  color: var(--accent);
+}
+
+.mc-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 10px;
+}
+
+.mc-photos.is-one {
+  grid-template-columns: 1fr;
+}
+
+.mc-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+}
+
+.mc-photos.is-one .mc-photo {
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+}
+
+.mc-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mc-foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 11px;
+  color: var(--text-2);
+}
+
+.mc-foot svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+}
+
+.mc-foot span {
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+
+.mc-foot .mc-foot-sep {
+  width: 1px;
+  height: 10px;
+  background: var(--line);
+  flex: 0 0 1px;
+}
+
+/* ---------- 15.2.11 可见范围（可点） ---------- */
+.mc-scope {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 -6px;
+  padding: 3px 6px;
+  border-radius: 7px;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mc-scope:active {
+  background: var(--panel-2);
+}
+
+.scope-list {
+  margin-top: 4px;
+}
+
+.scope-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+}
+
+.scope-name {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.scope-note {
+  margin: 2px 0 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+/* ---------- 15.3 空态 ---------- */
+.moments-empty {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.moments-main.is-empty .moments-empty { display: flex; }
+
+.moments-mark {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+  color: var(--text-2);
+}
+
+.moments-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.moments-title {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  color: var(--text);
+}
+
+.moments-sub {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.moments-rule {
+  width: 40px;
+  height: 1px;
+  margin-top: 22px;
+  background: var(--line-strong);
+  opacity: 0.7;
+}
+
+/* ---------- 15.4 发布页 ---------- */
+.cp-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  background: var(--bg);
+}
+
+.cp-mask.hide { display: none; }
+
+.cp-sheet {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.cp-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 56px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cp-head-btn {
+  min-height: 44px;
+  padding: 0 12px;
+  font-size: 13.5px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.cp-head-btn.is-post {
+  color: var(--text);
+}
+
+.cp-head-btn.is-post:disabled {
+  opacity: 0.35;
+}
+
+.cp-head-title {
+  flex: 1;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 0.10em;
+  color: var(--text);
+}
+
+.cp-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 14px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cp-text-wrap {
+  position: relative;
+  padding: 12px 13px 10px;
+  border-radius: 15px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.cp-text-wrap textarea {
+  display: block;
+  outline: none;
+  width: 100%;
+  min-height: 96px;
+  resize: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+
+.cp-text-wrap textarea::placeholder { color: var(--text-2); opacity: 0.78; }
+
+.cp-count {
+  display: block;
+  margin-top: 8px;
+  text-align: right;
+  font-size: 10.5px;
+  color: var(--text-2);
+  opacity: 0.78;
+  font-variant-numeric: tabular-nums;
+}
+
+.cp-photos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.cp-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+}
+
+.cp-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cp-photo-del {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 22, 26, 0.72);
+  color: #F4F4F0;
+}
+
+.cp-photo-del svg { width: 12px; height: 12px; }
+
+.cp-add {
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--line-strong);
+  background: transparent;
+  color: var(--text-2);
+}
+
+.cp-add svg { width: 22px; height: 22px; }
+
+.cp-rows {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.cp-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 13px;
+  border-top: 1px solid var(--line);
+}
+
+.cp-row:first-child { border-top: 0; }
+
+.cp-row-place { cursor: text; }
+
+.cp-ico {
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--text-2);
+}
+
+.cp-ico svg { width: 18px; height: 18px; }
+
+.cp-row-label {
+  flex: 0 0 auto;
+  font-size: 13.5px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+.cp-row-value {
+  flex: 1;
+  min-width: 0;
+  text-align: right;
+  font-size: 12.5px;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cp-row input {
+  flex: 1;
+  outline: none;
+  min-width: 0;
+  height: 44px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.cp-row input::placeholder { color: var(--text-2); opacity: 0.78; }
+
+.cp-arrow {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--text-2);
+  opacity: 0.72;
+}
+
+.cp-arrow svg { width: 16px; height: 16px; }
+
+/* ---------- 15.5 子面板（提到谁 / 可见范围） ---------- */
+.cp-pick {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.cp-pick.hide { display: none; }
+
+.cp-pick-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 56px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.cp-pick-title {
+  flex: 1;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing: 0.10em;
+  color: var(--text);
+}
+
+.cp-pick-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 16px calc(24px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pick-note {
+  margin: 2px 2px 0;
+  font-size: 11.5px;
+  line-height: 1.7;
+  color: var(--text-2);
+}
+
+/* ---------- 15.6 选择项 ---------- */
+.pick-list {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.pick-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 13px;
+  border-top: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.pick-item:first-child { border-top: 0; }
+
+.pick-item:active { background: var(--panel-2); }
+
+.pick-face .avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: 12.5px;
+}
+
+.pick-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pick-name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pick-note {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.pick-box,
+.pick-radio {
+  flex: 0 0 19px;
+  width: 19px;
+  height: 19px;
+  border-radius: 999px;
+  border: 1.2px solid var(--line-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  transition: background 0.16s ease, border-color 0.16s ease;
+}
+
+.pick-box svg { width: 12px; height: 12px; }
+
+.pick-box.is-on,
+.pick-radio.is-on {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.pick-radio.is-on::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--bg);
+}
+
+/* ---------- 15.4.6 视频格 ---------- */
+.cp-photo.is-video {
+  background: #16181B;
+  border-color: #16181B;
+}
+
+.cp-video-holder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #EDEDEA;
+}
+
+.cp-video-holder svg {
+  width: 26px;
+  height: 26px;
+  opacity: 0.9;
+}
+
+.cp-video-tag {
+  position: absolute;
+  left: 8px;
+  bottom: 7px;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  color: rgba(237, 237, 234, 0.7);
+}
+
+.mc-photo.is-video {
+  background: #14161A;
+  border-color: transparent;
+}
+
+/* 只有单独一条视频时才铺成 16:9，混排时与照片一样走方格 */
+.mc-photos.is-one .mc-photo.is-video {
+  aspect-ratio: 16 / 9;
+}
+
+.mc-photo.is-video video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #14161A;
+}

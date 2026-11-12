@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忆梦 · 设置</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/settings.css">
+</head>
+<body>
+<div class="app settings-app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <a class="icon-btn dim" href="../index.html" aria-label="返回桌面">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="nav-title">设置</div>
+  </header>
+
+  <main class="settings-scroll">
+
+    <!-- ===== 外观 ===== -->
+    <section class="set-group" id="secAppearance">
+      <h2 class="set-title">外观</h2>
+      <div class="set-panel">
+        <div class="set-row">
+          <span class="row-main row-title">主题</span>
+          <div class="seg seg-mini" id="segTheme">
+            <button class="seg-item" data-mode="light">日间</button>
+            <button class="seg-item" data-mode="dark">夜间</button>
+            <button class="seg-item" data-mode="auto">跟随</button>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row col">
+          <div class="set-row-top"><span class="row-title">字号</span><span class="small text-2 mono-num" id="valFontSize">15</span></div>
+          <input class="range" type="range" id="rangeFontSize" min="12" max="22" step="1" value="15">
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row col">
+          <span class="row-title">系统字体</span>
+          <div class="field mt-8"><input type="text" id="inputFontFamily" placeholder="&quot;SimSun&quot;, serif"></div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row col">
+          <span class="row-title">字体文件地址</span>
+          <div class="field mt-8"><input type="url" id="inputFontUrl" placeholder="https://… .woff2"></div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row col">
+          <span class="row-title">气泡</span>
+          <div class="field mt-8">
+            <select id="selBubblePreset">
+              <option value="rounded">圆角方形</option>
+              <option value="capsule">胶囊</option>
+              <option value="square">直角</option>
+              <option value="outline">描边</option>
+            </select>
+          </div>
+          <div class="field mt-8"><textarea id="inputBubbleUser" rows="2" placeholder="自己气泡：border-radius:18px; padding:9px 13px;"></textarea></div>
+          <div class="field mt-8"><textarea id="inputBubblePeer" rows="2" placeholder="对方气泡：同上写法"></textarea></div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row col">
+          <span class="row-title">聊天背景</span>
+          <div class="field mt-8">
+            <select id="selBgType">
+              <option value="none">无</option>
+              <option value="color">纯色</option>
+              <option value="image">图片</option>
+            </select>
+          </div>
+          <div class="field mt-8"><input type="text" id="inputBgValue" placeholder="色值 / 图片地址"></div>
+          <div class="set-inline mt-8">
+            <button class="btn btn-sm" id="btnBgUpload">上传图片</button>
+            <button class="btn btn-sm btn-ghost" id="btnBgClear">清除</button>
+          </div>
+          <div class="set-row-top mt-8"><span class="small text-2">遮罩</span><span class="small text-2 mono-num" id="valBgDim">0.88</span></div>
+          <input class="range" type="range" id="rangeBgDim" min="0" max="0.98" step="0.02" value="0.88">
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row">
+          <span class="row-main row-title">显示名称</span>
+          <button class="switch" id="swShowName" role="switch" aria-checked="true"></button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">显示头像</span>
+          <button class="switch" id="swShowAvatar" role="switch" aria-checked="true"></button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">时间戳</span>
+          <button class="switch" id="swShowTimestamp" role="switch" aria-checked="true"></button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">已读标记</span>
+          <button class="switch" id="swShowRead" role="switch" aria-checked="true"></button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">已读样式</span>
+          <div class="field select-mini">
+            <select id="selReadStyle">
+              <option value="text">文字</option>
+              <option value="doublecheck">双勾</option>
+              <option value="dot">圆点</option>
+            </select>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">开场动画</span>
+          <button class="switch" id="swOpening" role="switch" aria-checked="true"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 聊天体验 ===== -->
+    <section class="set-group" id="secChat">
+      <h2 class="set-title">聊天体验</h2>
+      <div class="set-panel">
+        <div class="set-row col">
+          <span class="row-title">正在输入文案</span>
+          <div class="field mt-8"><input type="text" id="inputTyping" maxlength="20" placeholder="正在输入…"></div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row col">
+          <span class="row-title">连句符号</span>
+          <div class="chip-list mt-8" id="mergeChips"></div>
+          <div class="set-inline mt-8">
+            <div class="field grow"><input type="text" id="inputMergeSymbol" maxlength="3" placeholder="添加符号"></div>
+            <button class="btn btn-sm" id="btnAddSymbol">添加</button>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row">
+          <span class="row-main row-title">消息音效</span>
+          <button class="switch" id="swSound" role="switch" aria-checked="true"></button>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row col">
+          <span class="row-title">音效列表</span>
+          <div class="sound-list mt-8" id="soundList"></div>
+          <div class="set-inline mt-8">
+            <button class="btn btn-sm" id="btnSoundUpload">上传音效</button>
+            <button class="btn btn-sm btn-ghost" id="btnSoundTest">试听</button>
+          </div>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row">
+          <span class="row-main row-title">对方随机音效</span>
+          <button class="switch" id="swPeerRandom" role="switch" aria-checked="true"></button>
+        </div>
+        <div class="divider"></div>
+
+        <div class="set-row">
+          <span class="row-main row-title">自己发送音效</span>
+          <div class="field select-mini"><select id="selUserSound"></select></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 通知 ===== -->
+    <section class="set-group" id="secNotify">
+      <h2 class="set-title">通知</h2>
+      <div class="set-panel">
+        <div class="set-row">
+          <span class="row-main row-title">页内提示</span>
+          <button class="switch" id="swNotify" role="switch" aria-checked="true"></button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main">
+            <span class="row-title">系统通知</span>
+            <span class="row-desc">需要挂到 localhost 才能开启</span>
+          </span>
+          <button class="switch" id="swSystemNotify" role="switch" aria-checked="false" disabled></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 数据 ===== -->
+    <section class="set-group" id="secData">
+      <h2 class="set-title">数据</h2>
+      <div class="set-panel">
+        <div class="set-row">
+          <span class="row-main">
+            <span class="row-title">已用空间</span>
+            <span class="row-desc">全部数据都在这台设备上</span>
+          </span>
+          <span class="small text-2 mono-num" id="dataSize">—</span>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">导出全部数据</span>
+          <button class="btn btn-sm" id="btnExport">导出</button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">导入备份</span>
+          <button class="btn btn-sm" id="btnImport">导入</button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main row-title">恢复自动备份</span>
+          <button class="btn btn-sm btn-ghost" id="btnRestore">恢复</button>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main">
+            <span class="row-title">重置所有数据</span>
+            <span class="row-desc">会话、消息、字卡、设置全部清空</span>
+          </span>
+          <button class="btn btn-sm btn-danger" id="btnReset">重置</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 关于 ===== -->
+    <section class="set-group">
+      <h2 class="set-title">关于</h2>
+      <div class="set-panel">
+        <div class="set-row">
+          <span class="row-main row-title">忆梦</span>
+          <span class="small text-2">1.0</span>
+        </div>
+        <div class="divider"></div>
+        <div class="set-row">
+          <span class="row-main">
+            <span class="row-title">数据存放位置</span>
+            <span class="row-desc">浏览器本地存储，不上传任何服务器</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/settings.js"></script>
+</body>
+</html>

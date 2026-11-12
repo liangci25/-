@@ -1,0 +1,155 @@
+/* ============================================================
+   忆梦 · mirror.css（共鉴 · 四类陪伴入口）
+   ============================================================ */
+
+.mirror-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mirror-main {
+  flex: 1;
+  padding: 26px 20px 40px;
+}
+
+/* 六格三列两行：图标 + 类名 + 当天谁陪着 */
+.mirror-kinds {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  row-gap: 20px;
+  column-gap: 4px;
+}
+
+.mirror-kind {
+  width: 100%;
+  max-width: 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.mirror-kind-tile {
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 21px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease, box-shadow 0.22s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mirror-kind-tile:active {
+  transform: scale(0.94);
+  box-shadow: none;
+}
+
+.mirror-kind-tile svg {
+  width: 25px;
+  height: 25px;
+}
+
+.mirror-kind-label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-indent: 0.1em;
+  color: var(--text-2);
+}
+
+.mirror-kind-note {
+  align-self: center;
+  max-width: 100%;
+  font-size: 11px;
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--text);
+}
+
+.mirror-kind-note.is-empty {
+  color: var(--line-strong);
+}
+
+.mirror-kind-note.is-call {
+  color: var(--text);
+  cursor: pointer;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 1px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 邀请面板：一行一个人，点一下选中，右端一枚勾 */
+.mk-rows {
+  margin: 6px 0 2px;
+}
+
+.mk-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 2px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  text-align: left;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14.5px;
+  letter-spacing: 0.02em;
+}
+
+.mk-row:active { background: var(--panel-2); }
+
+.mk-row-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mk-tick {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  position: relative;
+}
+
+.mk-row.is-on .mk-tick {
+  border-color: var(--text);
+  background: var(--text);
+}
+
+.mk-row.is-on .mk-tick::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 3px;
+  width: 6px;
+  height: 9px;
+  border-right: 1.5px solid var(--panel);
+  border-bottom: 1.5px solid var(--panel);
+  transform: rotate(38deg);
+}
+
+.mk-row.is-none {
+  margin-top: 6px;
+  border-bottom: 0;
+  color: var(--text-2);
+  font-size: 13.5px;
+}
+
+.mk-row.is-none .mk-tick {
+  border: 0;
+}

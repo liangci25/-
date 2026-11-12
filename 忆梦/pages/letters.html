@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忆梦 · 信笺</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/letters.css">
+</head>
+<body>
+<div class="app letter-app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <a class="icon-btn dim" href="../index.html" aria-label="返回桌面">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="nav-title">信笺</div>
+    <button class="icon-btn dim" id="btnWrite" aria-label="写一封信">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <path d="M15.6 4.6l3.8 3.8-9.4 9.4-4.6.8.8-4.6 9.4-9.4z"/>
+        <path d="M14.2 6l3.8 3.8" opacity="0.5"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ===== 信袋 ===== -->
+  <main class="letter-main">
+    <div class="letter-seg seg" id="letterSeg">
+      <button type="button" class="seg-item" data-seg="out" aria-selected="true">发出</button>
+      <button type="button" class="seg-item" data-seg="in" aria-selected="false">收到</button>
+      <button type="button" class="seg-item" data-seg="drift" aria-selected="false">时空来信</button>
+    </div>
+    <ul class="letter-list" id="letterList"></ul>
+    <div class="letter-empty hide" id="letterEmpty">
+      <p id="emptyTitle">还没有收到信</p>
+      <p id="emptySub">写一封寄出去，对方会回你。</p>
+    </div>
+  </main>
+
+  <footer class="letter-foot"><span></span></footer>
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/letters.js"></script>
+</body>
+</html>

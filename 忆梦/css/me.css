@@ -1,0 +1,131 @@
+/* ============================================================
+   忆梦 · me.css（我的资料页）
+   ============================================================ */
+
+.me-app {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.me-scroll {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 14px) 16px calc(32px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ---------- 头 ---------- */
+
+.me-hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 26px 16px 22px;
+}
+
+.me-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--panel-2) center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--text-2);
+  letter-spacing: 0.02em;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.me-avatar:active {
+  transform: scale(0.96);
+}
+
+.me-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.me-name {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  max-width: 240px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--text);
+}
+
+.me-bio {
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  max-width: 260px;
+  text-align: center;
+  color: var(--text-2);
+}
+
+/* ---------- 行 ---------- */
+
+.me-card {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.me-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 15px;
+  background: none;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.me-item:active {
+  background: var(--panel-2);
+}
+
+.me-label {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+.me-note {
+  margin-left: auto;
+  font-size: 12.5px;
+  color: var(--text-2);
+  max-width: 170px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.me-arrow {
+  font-size: 15px;
+  color: var(--line-strong);
+}
+
+.me-hair {
+  height: 1px;
+  margin-left: 15px;
+  background: var(--line);
+}

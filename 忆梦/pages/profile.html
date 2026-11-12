@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>个人资料 · 忆梦</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/profile.css?v=183">
+</head>
+<body>
+<div class="app profile-app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <a class="icon-btn dim" id="pfBack" href="sessions.html" aria-label="返回">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="nav-title" id="pfNavTitle">个人资料</div>
+    <span class="nav-pad" aria-hidden="true"></span>
+  </header>
+
+  <main class="profile-scroll" id="profileScroll">
+
+    <!-- ===== 角色资料 ===== -->
+    <section class="pf-hero" id="pfHero">
+      <button type="button" class="pf-avatar" id="pfAvatar" aria-label="更换头像"></button>
+      <div class="pf-meta">
+        <span class="pf-name" id="pfName">忆梦</span>
+        <span class="pf-sub" id="pfSub" hidden></span>
+      </div>
+    </section>
+
+    <!-- ===== 群信息（只有群聊显示） ===== -->
+    <section class="pf-card pf-group-info" id="pfGroup" hidden>
+      <button type="button" class="pf-item" data-g="name">
+        <span class="pf-item-label">群名称</span>
+        <span class="pf-item-note" id="pfGroupNameVal"></span>
+        <span class="pf-arrow" aria-hidden="true">›</span>
+      </button>
+      <div class="pf-hair"></div>
+      <button type="button" class="pf-item" data-g="notice">
+        <span class="pf-item-label">群公告</span>
+        <span class="pf-item-note" id="pfGroupNoticeVal"></span>
+        <span class="pf-arrow" aria-hidden="true">›</span>
+      </button>
+    </section>
+
+    <!-- ===== 群成员（只有群聊显示） ===== -->
+    <section class="pf-card pf-members" id="pfMembers" hidden>
+      <div class="pf-members-head">
+        <span class="pf-sec-title">群成员</span>
+        <span class="pf-members-count" id="pfMemberCount"></span>
+      </div>
+      <div class="pf-members-grid" id="pfMemberGrid"></div>
+    </section>
+
+    <!-- ===== 群管理（只有群聊显示） ===== -->
+    <section class="pf-card pf-manage" id="pfManage" hidden>
+      <div class="pf-members-head">
+        <span class="pf-sec-title">群管理</span>
+        <span class="pf-members-count" id="pfOwnerNote">群主 · 我</span>
+      </div>
+      <div class="pf-manage-list" id="pfManageList"></div>
+    </section>
+
+    <!-- ===== 行列表 ===== -->
+    <section class="pf-card pf-list" id="pfRows">
+      <button type="button" class="pf-item" data-act="settings">
+        <span class="pf-item-label">聊天设置</span>
+        <span class="pf-arrow" aria-hidden="true">›</span>
+      </button>
+      <div class="pf-hair"></div>
+
+      <button type="button" class="pf-item" data-act="pin">
+        <span class="pf-item-label">置顶聊天</span>
+        <span class="switch" id="pfPinSwitch" role="switch" aria-checked="false"></span>
+      </button>
+      <div class="pf-hair"></div>
+
+      <button type="button" class="pf-item" data-act="background">
+        <span class="pf-item-label">聊天背景</span>
+        <span class="pf-item-note" id="pfBgNote"></span>
+        <span class="pf-arrow" aria-hidden="true">›</span>
+      </button>
+      <div class="pf-hair"></div>
+
+      <button type="button" class="pf-item" data-act="search">
+        <span class="pf-item-label">查找聊天记录</span>
+        <span class="pf-arrow" aria-hidden="true">›</span>
+      </button>
+      <div class="pf-hair"></div>
+
+      <button type="button" class="pf-item is-danger" data-act="clear">
+        <span class="pf-item-label">清空聊天记录</span>
+        <span class="pf-arrow" aria-hidden="true">›</span>
+      </button>
+    </section>
+
+  </main>
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/profile.js?v=184"></script>
+</body>
+</html>

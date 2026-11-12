@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忆梦</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/chat.css?v=186">
+</head>
+<body>
+<div class="app chat-app">
+
+  <!-- 背景层 -->
+  <div class="chat-bg" id="chatBg" aria-hidden="true"></div>
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav chat-nav">
+    <a class="icon-btn dim" id="btnBack" href="sessions.html" aria-label="返回会话">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="chat-title">
+      <div class="nav-title" id="chatTitle">忆梦</div>
+      <div class="chat-status" id="chatStatus"></div>
+    </div>
+    <div class="nav-ecg" id="navEcg" aria-label="陪伴中">
+      <svg viewBox="0 0 132 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path class="ecg-line" d="M4 17h14l3-3 3 3 3-10 3.4 17 3-7 3 4h12"/>
+        <path class="ecg-pulse" d="M4 17h14l3-3 3 3 3-10 3.4 17 3-7 3 4h12"/>
+        <path class="ecg-heart" d="M66 25C62.2 22.2 55.4 17.4 55.4 12.6A5.6 5.6 0 0 1 66 10.4A5.6 5.6 0 0 1 76.6 12.6C76.6 17.4 69.8 22.2 66 25Z"/>
+        <path class="ecg-line" d="M84 17h14l3-3 3 3 3-10 3.4 17 3-7 3 4h12"/>
+        <path class="ecg-pulse" d="M84 17h14l3-3 3 3 3-10 3.4 17 3-7 3 4h12"/>
+      </svg>
+    </div>
+    <button class="icon-btn dim" id="btnMore" aria-label="个人资料">
+      <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/></svg>
+    </button>
+  </header>
+
+  <!-- ===== 群公告 ===== -->
+  <button class="chat-notice" id="chatNotice" type="button">
+    <span class="cn-tag">群公告</span>
+    <span class="cn-text" id="chatNoticeText"></span>
+  </button>
+
+  <!-- ===== 消息区 ===== -->
+  <main class="chat-scroll" id="chatScroll">
+    <ul class="msg-list" id="msgList"></ul>
+    <div class="msg-toolbar" id="msgToolbar" hidden>
+      <button type="button" class="mt-btn" data-act="quote">引用</button>
+      <span class="mt-sep"></span>
+      <button type="button" class="mt-btn" data-act="fav" id="mtFav">收藏</button>
+      <span class="mt-sep"></span>
+      <button type="button" class="mt-btn is-danger" data-act="del">删除</button>
+    </div>
+  </main>
+
+  <!-- ===== 底部输入区 ===== -->
+  <div class="quote-bar" id="quoteBar" hidden>
+    <span class="qb-line"></span>
+    <span class="qb-text" id="quoteText"></span>
+    <button class="qb-x" id="quoteCancel" type="button" aria-label="取消引用">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>
+      </svg>
+    </button>
+  </div>
+  <div class="composer">
+    <button class="plus-btn" id="btnPlus" aria-label="更多操作">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M12 6.5v11M6.5 12h11"/>
+      </svg>
+    </button>
+    <div class="input-shell">
+      <textarea id="inputMsg" rows="1" maxlength="500" placeholder="说点什么" autocomplete="off"></textarea>
+      <button class="send-btn" id="btnSend" aria-label="发送">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path d="M4.5 12l15-7-7 15-1.6-6.2z" fill="currentColor" fill-opacity="0.12"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== ＋ 上升面板（每页 6 项，可横向滑动翻页） ===== -->
+  <div class="action-panel" id="plusPanel">
+    <div class="action-track" id="panelTrack"></div>
+    <div class="action-dots" id="panelDots"></div>
+  </div>
+
+  <!-- ===== 视频通话（模拟画面，不调用摄像头） ===== -->
+  <button type="button" class="call-fab" id="callFab" hidden>
+    <span class="cf-avatar" id="cfAvatar"></span>
+    <span class="cf-time" id="cfTime">00:00</span>
+  </button>
+  <div class="call-mask" id="callMask" hidden>
+    <div class="call-view" id="callView">
+      <div class="call-bg" id="callBg"></div>
+      <div class="call-top">
+        <div class="call-status" id="callStatus">正在呼叫…</div>
+      </div>
+      <div class="call-stage">
+        <span class="call-avatar" id="callAvatar"></span>
+        <div class="call-faces" id="callFaces" hidden></div>
+      </div>
+      <div class="call-actions">
+        <button type="button" class="call-btn is-answer" id="callAnswer" hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <rect x="3" y="6" width="12" height="12" rx="2.5"/><path d="M15.5 11.2l4.2-2.6v6.8l-4.2-2.6z"/>
+          </svg>
+          <span>接听</span>
+        </button>
+        <button type="button" class="call-btn" id="callMute">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <rect x="9" y="3.5" width="6" height="10.5" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.6"/>
+          </svg>
+          <span id="callMuteText">静音</span>
+        </button>
+        <button type="button" class="call-btn is-hang" id="callHang">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M4.5 9.5c4.6-4 10.4-4 15 0"/><path d="M4.5 9.5l1.6 4.2 3.4-.9"/>
+            <path d="M19.5 9.5l-1.6 4.2-3.4-.9"/>
+          </svg>
+          <span id="callHangText">挂断</span>
+        </button>
+      </div>
+    </div>
+    <button type="button" class="call-back" id="callBack" aria-label="返回聊天">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+        <path d="M14.5 5.5L8 12l6.5 6.5"/>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/chat.js?v=184"></script>
+</body>
+</html>
+

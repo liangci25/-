@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忆梦 · 会话</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/sessions.css?v=142">
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <a class="icon-btn dim" href="../index.html" aria-label="返回桌面">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="nav-title">忆梦</div>
+    <button class="icon-btn" id="btnNew" aria-label="新建会话">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M12 5v14M5 12h14"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ===== 列表 ===== -->
+  <main class="list-wrap">
+    <!-- 加好友：居中弹窗（左头像 / 右名称 / 下面直链；可逐行添加，一次建多位） -->
+    <div class="mask create-mask hide" id="createMask" aria-hidden="true">
+      <form class="create-card" id="createCard" autocomplete="off"></form>
+    </div>
+
+    <!-- 创建群聊：同一套弹窗（头像 / 名称 / 群成员） -->
+    <div class="mask create-mask hide" id="groupMask" aria-hidden="true">
+      <form class="create-card is-group" id="groupCard" autocomplete="off"></form>
+    </div>
+
+    <ul class="session-list" id="sessionList"></ul>
+
+    <div class="empty hide" id="emptyState">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v6A2.5 2.5 0 0 1 17.5 16H11l-4 3.2V16H6.5A2.5 2.5 0 0 1 4 13.5z"/>
+      </svg>
+      <p>还没有会话</p>
+      <button class="btn btn-primary btn-sm" id="btnNewEmpty">新建会话</button>
+    </div>
+  </main>
+
+  <!-- ===== 底部双 tab ===== -->
+  <nav class="two-tabs" aria-label="切换">
+    <a class="two-tab is-on" href="sessions.html">会话</a>
+    <a class="two-tab" href="moments.html">朋友圈</a>
+  </nav>
+
+  <!-- ===== ＋ 侧弹窗（加好友 / 创建群聊，可继续加项） ===== -->
+  <div class="new-pop" id="newPanel" aria-hidden="true">
+    <button class="np-item" data-key="friend">
+      <span class="np-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="10.5" cy="8.5" r="3.4"/><path d="M3.8 19.2c0-3.2 3-5.1 6.7-5.1s6.7 1.9 6.7 5.1"/>
+          <path d="M18.4 8.2v5.2M15.8 10.8h5.2"/>
+        </svg>
+      </span>
+      <span class="np-label">加好友</span>
+    </button>
+    <button class="np-item" data-key="group">
+      <span class="np-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="9" cy="8.6" r="3.1"/><path d="M3.4 18.6c0-3 2.5-4.8 5.6-4.8s5.6 1.8 5.6 4.8"/>
+          <circle cx="17.2" cy="9.6" r="2.4"/><path d="M15 14.2c3 .2 5 1.8 5 4.4"/>
+        </svg>
+      </span>
+      <span class="np-label">创建群聊</span>
+    </button>
+  </div>
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/sessions.js?v=142"></script>
+</body>
+</html>

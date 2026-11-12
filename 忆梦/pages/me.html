@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的资料 · 忆梦</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/me.css">
+</head>
+<body>
+<div class="app me-app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <button type="button" class="icon-btn dim" id="meBack" aria-label="返回">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </button>
+    <div class="nav-title">我的资料</div>
+    <span class="nav-pad" aria-hidden="true"></span>
+  </header>
+
+  <main class="me-scroll">
+
+    <!-- ===== 我 ===== -->
+    <section class="me-hero">
+      <button type="button" class="me-avatar" id="meAvatar" aria-label="更换头像"></button>
+      <div class="me-meta">
+        <span class="me-name" id="meName">我</span>
+        <span class="me-bio" id="meBio" hidden></span>
+      </div>
+    </section>
+
+    <!-- ===== 可改的几项 ===== -->
+    <section class="me-card">
+      <button type="button" class="me-item" data-act="avatar">
+        <span class="me-label">头像</span>
+        <span class="me-note" id="meAvatarNote">未设置</span>
+        <span class="me-arrow" aria-hidden="true">›</span>
+      </button>
+      <div class="me-hair"></div>
+      <button type="button" class="me-item" data-act="name">
+        <span class="me-label">昵称</span>
+        <span class="me-note" id="meNameNote"></span>
+        <span class="me-arrow" aria-hidden="true">›</span>
+      </button>
+      <div class="me-hair"></div>
+      <button type="button" class="me-item" data-act="bio">
+        <span class="me-label">签名</span>
+        <span class="me-note" id="meBioNote"></span>
+        <span class="me-arrow" aria-hidden="true">›</span>
+      </button>
+    </section>
+
+  </main>
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/me.js"></script>
+</body>
+</html>

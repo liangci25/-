@@ -1,0 +1,56 @@
+/* ============================================================
+   忆梦 · resonance.css（共振）
+   ============================================================ */
+
+.resonance-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.resonance-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 32px 96px;
+  text-align: center;
+}
+
+.resonance-mark {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+  color: var(--text-2);
+}
+
+.resonance-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.resonance-title {
+  margin: 0;
+  font-size: 15px;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+  color: var(--text);
+}
+
+.resonance-sub {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.8;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.resonance-rule {
+  width: 40px;
+  height: 1px;
+  margin-top: 22px;
+  background: var(--line-strong);
+  opacity: 0.7;
+}

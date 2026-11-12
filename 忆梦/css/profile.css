@@ -1,0 +1,563 @@
+/* ============================================================
+   忆梦 · profile.css（个人资料页）
+   依赖：css/common.css 的令牌，以及 07.6 的 .param-* / .num-pair
+   ============================================================ */
+
+.profile-app {
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.profile-scroll {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 14px) 16px calc(28px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 角色资料卡：名字居中，与参考图一致 */
+.pf-hero {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 16px 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.pf-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+  background: var(--panel-2) center/cover no-repeat;
+  border: 1px solid var(--line);
+  transition: transform 0.12s ease;
+}
+
+.pf-avatar:active { transform: scale(0.96); }
+
+.pf-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.pf-name {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  max-width: 240px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pf-sub {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+}
+
+/* 群成员：头像一排，末尾一个虚线圈的「＋ 成员」 */
+.pf-members {
+  padding: 14px 14px 16px;
+}
+
+.pf-members-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.pf-sec-title {
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+}
+
+.pf-members-count {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+}
+
+.pf-members-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 8px;
+}
+
+.pm-item {
+  width: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.pm-av {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--panel-2) center/cover no-repeat;
+  border: 1px solid var(--line);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+
+.pm-av svg { width: 17px; height: 17px; }
+
+.pm-name {
+  max-width: 52px;
+  font-size: 11.5px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--text-2);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 我在群成员里：头像右下角一枚「主」小圆，代表群主 */
+.pm-owner-mark {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 8.5px;
+  font-style: normal;
+  letter-spacing: 0;
+  line-height: 1;
+  border: 1.5px solid var(--panel);
+}
+
+.pf-manage-row.is-me .pf-manage-name {
+  color: var(--text-2);
+}
+
+.pf-manage-role {
+  flex: 0 0 auto;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--text-2);
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+/* 被禁言：头像压一层灰、右上角一枚斜杠 */
+.pm-item.is-muted .pm-av {
+  opacity: 0.55;
+}
+
+.pm-item.is-muted .pm-name {
+  opacity: 0.6;
+}
+
+.pm-av { position: relative; }
+
+.pm-muted-mark {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--panel) radial-gradient(circle, transparent 0 100%);
+  border: 1px solid var(--line);
+}
+
+.pm-muted-mark::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 6px;
+  width: 7px;
+  height: 1px;
+  background: var(--text-2);
+  transform: rotate(-38deg);
+}
+
+/* 群信息：群名称 / 群公告两行，右侧一句当前值 */
+.pf-group-info {
+  padding: 0;
+  overflow: hidden;
+}
+
+.pf-group-info .pf-item {
+  background: transparent;
+}
+
+.pf-group-info .pf-item-note {
+  max-width: 55%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* 群管理：成员一行一位，右边一枚禁言开关 */
+.pf-manage {
+  padding: 14px 14px 6px;
+}
+
+.pf-manage-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-manage-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.pf-manage-row:first-child { border-top: 0; }
+
+.pm-av.is-sm {
+  width: 34px;
+  height: 34px;
+  font-size: 13px;
+  flex: 0 0 auto;
+}
+
+.pm-av.is-sm.is-muted { opacity: 0.55; }
+
+.pf-manage-name {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+/* 禁言开关用近黑，不用强调色：它不是「开启某项功能」，是「限制」 */
+.pf-manage-row .switch[aria-checked="true"] {
+  background: var(--text);
+  border-color: var(--text);
+}
+
+.pf-manage-state {
+  font-style: normal;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+}
+
+.pm-add { cursor: pointer; }
+
+.pm-add .pm-av {
+  background: transparent;
+  border: 1px dashed var(--line-strong);
+  color: var(--text-2);
+}
+
+.pm-add:active .pm-av { background: var(--panel-2); }
+
+.pm-pool { margin-top: 14px; }
+
+/* 行列表 */
+.pf-card {
+  width: 100%;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 14px 14px 12px;
+}
+
+.pf-list {
+  padding: 0;
+  overflow: hidden;
+}
+
+.pf-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 14px;
+  text-align: left;
+  background: transparent;
+}
+
+.pf-item-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--font-size);
+  color: var(--text);
+}
+
+.pf-item-note {
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: var(--text-2);
+}
+
+.pf-arrow {
+  flex: 0 0 auto;
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1;
+}
+
+.pf-item.is-danger .pf-item-label { color: #C2453F; }
+
+.pf-item:active { background: var(--panel-2); }
+
+.pf-hair {
+  height: 1px;
+  margin-left: 14px;
+  background: var(--line);
+}
+
+/* 置顶用通用圆形开关（common.css 的 .switch） */
+
+/* 弹层内 */
+.pf-sheet-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.pf-sheet-actions .btn {
+  flex: 1;
+  min-height: 38px;
+}
+
+.pf-select {
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-size: var(--font-size);
+  text-align: right;
+  padding: 0;
+}
+
+.sheet-gap { height: 10px; }
+
+/* 查找结果 */
+.pf-hits {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-hit {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+}
+
+.pf-hit:last-child { border-bottom: none; }
+
+.pf-hit-tag {
+  font-size: 11.5px;
+  color: var(--text-2);
+  letter-spacing: 0.04em;
+  margin-right: 6px;
+}
+
+.pf-hit-text {
+  display: inline;
+  font-size: 13.5px;
+  color: var(--text);
+  word-break: break-all;
+}
+
+.pf-hit-text mark {
+  background: color-mix(in srgb, var(--accent) 26%, transparent);
+  color: var(--text);
+  border-radius: 3px;
+  padding: 0 1px;
+}
+
+.pf-hit-time {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.pf-hit-empty {
+  padding: 18px 0;
+  text-align: center;
+}
+
+/* ---------- 09.6 全屏弹层的样式统一在 common.css（`.sheet.is-full` / `.fs-*`） ---------- */
+
+/* ---------- 聊天背景设置面板 ---------- */
+.bgs-preview {
+  position: relative;
+  height: 132px;
+  margin: 4px 0 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--bg);
+  box-shadow: inset 0 0 0 1px var(--line);
+  background-size: cover;
+  background-position: center;
+}
+.bgs-preview.is-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-2);
+  font-size: 12.5px;
+  letter-spacing: 0.02em;
+}
+.bgs-veil {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  opacity: 0.88;
+  pointer-events: none;
+}
+.bgs-preview .bgs-sample {
+  position: absolute;
+  left: 14px;
+  top: 26px;
+  width: 118px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: 0 1px 2px rgba(20, 20, 24, 0.1);
+}
+.bgs-preview .bgs-sample-2 {
+  left: auto;
+  right: 14px;
+  top: 70px;
+  width: 96px;
+  background: var(--panel-2);
+}
+.bgs-acts {
+  display: flex;
+  gap: 10px;
+  margin: -4px 0 14px;
+}
+.bgs-act {
+  flex: 1 1 auto;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+}
+.bgs-act:active { transform: scale(0.985); }
+.bgs-act.is-plain {
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-2);
+}
+.bgs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.bgs-label {
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+.bgs-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 148px;
+  height: 22px;
+  background: transparent;
+}
+.bgs-range::-webkit-slider-runnable-track {
+  height: 2px;
+  border-radius: 2px;
+  background: var(--line-strong);
+}
+.bgs-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: var(--text);
+}
+.bgs-chips {
+  display: flex;
+  gap: 8px;
+}
+.bgs-chip {
+  height: 30px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 12.5px;
+}
+.bgs-chip.is-on {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--panel);
+}
+
+.bgs-url-row { margin: -2px 0 6px; }
+.bgs-url {
+  width: 100%;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+.bgs-url::placeholder { color: var(--text-2); }
+.bgs-url:focus { outline: none; border-color: var(--text); }
+.bgs-url.is-bad { border-color: #C08A86; }
+.bgs-url-note {
+  margin: 7px 2px 0;
+  color: var(--text-2);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.bgs-url-note.is-bad { color: #A8736F; }

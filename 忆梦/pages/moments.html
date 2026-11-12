@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>忆梦 · 朋友圈</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317181B'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='%23F2F2EF' font-family='serif'%3E忆%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/moments.css">
+</head>
+<body>
+<div class="app moments-app">
+
+  <!-- ===== 导航 ===== -->
+  <header class="nav">
+    <a class="icon-btn dim" href="sessions.html" aria-label="返回会话">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <path d="M15 5.5L8.5 12L15 18.5"/>
+      </svg>
+    </a>
+    <div class="nav-title">朋友圈</div>
+    <button class="icon-btn" id="btnCompose" aria-label="发朋友圈">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14.6 5.1l4.3 4.3L9.4 18.4l-4.9 1.2 1.2-4.9z"/>
+        <path d="M13.1 6.6l4.3 4.3"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- ===== 动态列表 ===== -->
+  <main class="moments-main">
+    <ul class="moment-list" id="momentList"></ul>
+
+    <div class="moments-empty" id="momentsEmpty">
+      <div class="moments-mark" aria-hidden="true">
+        <svg viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <rect x="26" y="26" width="38" height="38" rx="5"/>
+          <rect x="46" y="42" width="26" height="26" rx="4" opacity="0.36"/>
+          <path d="M30 74h36" opacity="0.26"/>
+        </svg>
+      </div>
+      <p class="moments-title">还没有人发过</p>
+      <p class="moments-sub">等谁先想起要发第一条。</p>
+      <span class="moments-rule"></span>
+    </div>
+  </main>
+
+  <!-- ===== 底部双 tab ===== -->
+  <nav class="two-tabs" aria-label="切换">
+    <a class="two-tab" href="sessions.html">会话</a>
+    <a class="two-tab is-on" href="moments.html">朋友圈</a>
+  </nav>
+
+  <!-- ===== 发布页（整屏） ===== -->
+  <div class="cp-mask hide" id="composeMask" aria-hidden="true">
+    <div class="cp-sheet">
+      <header class="cp-head">
+        <button class="cp-head-btn" id="cpCancel" type="button">取消</button>
+        <div class="cp-head-title">发布朋友圈</div>
+        <button class="cp-head-btn is-post" id="cpPost" type="button">发布</button>
+      </header>
+
+      <div class="cp-body">
+        <div class="cp-text-wrap">
+          <textarea id="cpText" rows="4" maxlength="600" placeholder="这一刻，说点什么……"></textarea>
+          <div class="cp-photos" id="cpPhotos"></div>
+          <span class="cp-count" id="cpCount">0/600</span>
+        </div>
+
+        <ul class="cp-rows">
+          <li class="cp-row cp-row-place">
+            <span class="cp-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s6.5-6.2 6.5-11a6.5 6.5 0 1 0-13 0c0 4.8 6.5 11 6.5 11z"/>
+                <circle cx="12" cy="10" r="2.4"/>
+              </svg>
+            </span>
+            <input id="cpPlace" type="text" maxlength="30" placeholder="添加地点">
+          </li>
+
+          <li class="cp-row" id="rowMention" role="button" tabindex="0">
+            <span class="cp-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="3.6"/>
+                <path d="M15.6 12v1.6a2.4 2.4 0 0 0 4.8 0V12a8.4 8.4 0 1 0-3.3 6.7"/>
+              </svg>
+            </span>
+            <span class="cp-row-label">提到谁</span>
+            <span class="cp-row-value" id="mentionValue">不 @ 任何人</span>
+            <span class="cp-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M9.5 5.5L16 12l-6.5 6.5"/>
+              </svg>
+            </span>
+          </li>
+
+          <li class="cp-row" id="rowScope" role="button" tabindex="0">
+            <span class="cp-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2.8 12S6.2 5.6 12 5.6 21.2 12 21.2 12 18 18.4 12 18.4 2.8 12 2.8 12z"/>
+                <circle cx="12" cy="12" r="2.9"/>
+              </svg>
+            </span>
+            <span class="cp-row-label">谁可以看</span>
+            <span class="cp-row-value" id="scopeValue">公开</span>
+            <span class="cp-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M9.5 5.5L16 12l-6.5 6.5"/>
+              </svg>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <input type="file" id="cpFile" accept="image/*" multiple hidden>
+      <input type="file" id="cpVideo" accept="video/*" hidden>
+
+      <!-- 子面板：提到谁 / 可见范围 -->
+      <div class="cp-pick hide" id="cpPick">
+        <header class="cp-pick-head">
+          <button class="cp-head-btn" id="pickCancel" type="button">取消</button>
+          <div class="cp-pick-title" id="pickTitle">选择</div>
+          <button class="cp-head-btn is-post" id="pickOk" type="button">确定</button>
+        </header>
+        <div class="cp-pick-body" id="pickBody"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="../js/common.js"></script>
+<script src="../js/moments.js"></script>
+</body>
+</html>

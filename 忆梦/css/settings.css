@@ -1,0 +1,164 @@
+/* ============================================================
+   忆梦 · settings.css
+   ============================================================ */
+
+.settings-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-scroll {
+  flex: 1;
+  padding: 6px 16px 46px;
+}
+
+.set-group { margin-top: 22px; }
+
+.set-title {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  color: var(--text-2);
+  margin: 0 0 9px 6px;
+  text-indent: 0.24em;
+}
+
+.set-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 4px 16px 8px;
+}
+
+.set-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 52px;
+  padding: 8px 0;
+}
+
+.set-row.col {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  padding: 12px 0;
+}
+
+.set-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.set-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.set-row .divider { margin: 0; }
+
+.set-panel > .divider { opacity: 0.75; }
+
+.seg-mini {
+  flex: 0 0 178px;
+  padding: 2px;
+}
+
+.seg-mini .seg-item {
+  min-height: 30px;
+  font-size: 12px;
+}
+
+.select-mini {
+  flex: 0 0 92px;
+  min-height: 36px;
+  height: 36px;
+  padding: 0 10px;
+}
+
+.select-mini select { height: 34px; font-size: 13px; }
+
+/* ---------- 连句符号 ---------- */
+.symbol-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px 5px 12px;
+  border-radius: 999px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--text);
+}
+
+.symbol-chip button {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.symbol-chip button:active { background: var(--panel); }
+
+/* ---------- 音效 ---------- */
+.sound-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sound-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 4px 4px 4px 10px;
+  border-radius: 10px;
+  background: var(--panel-2);
+}
+
+.sound-item .row-main { flex: 1; min-width: 0; }
+
+.sound-name {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sound-tag {
+  font-size: 10px;
+  color: var(--text-2);
+  margin-left: 6px;
+}
+
+.sound-del {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--text-2);
+}
+
+.sound-del svg { width: 15px; height: 15px; }
+.sound-del[disabled] { opacity: 0.3; }
+
+/* ---------- 重置弹层 ---------- */
+.reset-note {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-2);
+  margin: 0 0 16px;
+}
